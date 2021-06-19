@@ -1,5 +1,6 @@
 ﻿using Catalog.API.Entities;
 using Catalog.API.Options;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System;
 
@@ -11,9 +12,9 @@ namespace Catalog.API.Data
 		private readonly MongoClient _dbClient;
 		private IMongoCollection<Product> _products;
 
-		public CatalogContext(DatabaseOptions dbConfig, MongoClient dbClient)
+		public CatalogContext(IOptions<DatabaseOptions> dbConfig, MongoClient dbClient)
 		{
-			_dbConfig = dbConfig ?? throw new ArgumentNullException(nameof(dbConfig));
+			_dbConfig = dbConfig.Value ?? throw new ArgumentNullException(nameof(dbConfig));
 			_dbClient = dbClient ?? throw new ArgumentNullException(nameof(dbClient));
 		}
 
