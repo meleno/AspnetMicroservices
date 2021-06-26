@@ -12,9 +12,9 @@ namespace Ordering.Infrastructure.Repositories
 {
     public class RepositoryBase<T> : IAsyncRepository<T> where T : EntityBase
     {
-        protected readonly DbContext _dbContext;
+        protected readonly OrderContext _dbContext;
 
-        public RepositoryBase(DbContext dbContext)
+        public RepositoryBase(OrderContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }        
